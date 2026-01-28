@@ -3,7 +3,7 @@ Hammerspoon Lua scripts that bring PC-style key bindings to macOS, with a focus 
 
 This is a labor of love for a left hand mouser who needs a ten key and therefore REALLY REALLY wants cut/copy/paste functions on the right hand. I also do a ton of work through remote servers with Microsoft Remote Desktop and in VMs, while still needing native macOS usability.
 
-The canonical shortcut reference is in `Mappings.md`.
+The canonical shortcut reference is in [`Mappings.md`](Mappings.md).
 
 ## Repository Structure
 Key files and what they do:
