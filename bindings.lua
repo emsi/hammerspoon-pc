@@ -11,12 +11,12 @@ hs.hotkey.bind({'alt', 'ctrl'}, 'l', function() hs.caffeinate.lockScreen() end)
 hs.hotkey.bind(ultra, 'c', function() launchAppAndTractorBeamToMouseScreen('Google Chrome') end)
 
 -- START Open Grab. Edit->Selection, [user selects an area], Edit->Copy, END (user left to close Grab app)
-hs.hotkey.bind({'alt'}, 'g', function() startNewGrabThenCopy() end)
+hs.hotkey.bind({'alt', 'ctrl'}, 'g', function() startNewGrabThenCopy() end)
 --hs.hotkey.bind({'alt'}, 't', function() openNewTerminalWindow() end)
 
 -- -----------------------------------------------------------------------------
 -- Tools for writing Hammerspoon script
-hs.hotkey.bind({'alt'}, 'a', function() hs.alert(hs.application.frontmostApplication():name()) end)
+hs.hotkey.bind({'alt', 'ctrl'}, 'a', function() hs.alert(hs.application.frontmostApplication():name()) end)
 hs.hotkey.bind({'alt'}, 'b', function() hs.alert(hs.application.frontmostApplication():bundleID()) end)
 hs.hotkey.bind({'alt'}, 'h', function() flipSkipToggle() end)
 

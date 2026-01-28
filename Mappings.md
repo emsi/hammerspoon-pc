@@ -37,6 +37,12 @@ This configuration remaps PC-style keyboard shortcuts to work on macOS.
 | ~~`Ctrl+Shift+Left`~~ | ~~Select previous word~~ | *Disabled - used for desktop switching* |
 | ~~`Ctrl+Shift+Right`~~ | ~~Select next word~~ | *Disabled - used for desktop switching* |
 
+**Exceptions (global):**
+| Shortcut | Exception Behavior |
+|----------|--------------------|
+| `Ctrl+Home` / `Ctrl+End` | Pass through in Microsoft Remote Desktop; `Ctrl+Home` / `Ctrl+End` in VirtualBox VM |
+| `Ctrl+Shift+Home` / `Ctrl+Shift+End` | Pass through in Microsoft Remote Desktop and VirtualBox VM |
+
 ## Edit Operations
 
 | PC Shortcut | Action | Mac Equivalent |
@@ -120,8 +126,8 @@ Full passthrough mode - all PC shortcuts are sent directly to the remote Windows
 **Special Fn combinations:**
 | Shortcut | Sends |
 |----------|-------|
-| `Ctrl+Fn` | `Ctrl+C` (Copy) |
-| `Shift+Fn` | `Ctrl+V` (Paste) |
+| `Ctrl+Fn` | `Cmd+C` (Copy) *(Ctrl+C in Remote Desktop / VirtualBox)* |
+| `Shift+Insert` | `Cmd+V` (Paste) *(Ctrl+V in Remote Desktop / VirtualBox)* |
 
 ### VirtualBox VM
 
@@ -156,7 +162,9 @@ Full passthrough mode for most shortcuts, with some specific translations for do
 
 ### Terminal / iTerm2
 
-All Ctrl+key combinations pass through unchanged to allow standard readline/bash shortcuts.
+Terminal is aliased to use iTerm2's configuration automatically.
+
+All following Ctrl+key combinations pass through unchanged to allow standard readline/bash shortcuts.
 
 | Shortcut | Terminal Function |
 |----------|-------------------|
@@ -181,10 +189,10 @@ All Ctrl+key combinations pass through unchanged to allow standard readline/bash
 | `Ctrl+Z` | Suspend process |
 
 **Navigation keys:**
-| Key | iTerm2 | Terminal |
-|-----|--------|----------|
-| `Home` | Passthrough | `Alt+Left` |
-| `End` | `End` key | `Alt+Right` |
+| Key | Action |
+|-----|--------|
+| `Home` | Passthrough (native terminal behavior) |
+| `End` | Sends `End` key |
 
 ### Google Chrome
 

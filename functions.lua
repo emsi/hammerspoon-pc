@@ -104,11 +104,24 @@ function getKeyEvent(modifiers, key, keyDownEvent, finish)
   return hs.eventtap.event.newKeyEvent(modifiers, key, keyDownEvent):setProperty(EVENTPROPERTY_EVENTSOURCEUSERDATA, data)
 end
 
+-- App aliases: apps that should use another app's configuration
+-- Format: aliasedApp = targetApp (e.g., Terminal uses iTerm2's config)
+appAliases = {
+  Terminal = 'iTerm2'
+}
+
 -- Lookup a named combo from a structure (see config_pckeys.lua) and return a table of the modifiers + key to send
 function getCombo(strCombo)
   -- Look up combo from combo table
   local app = string.gsub(hs.application.frontmostApplication():name(), ' ', '_')
-  app = string.gsub(app, '^%d', 'N') -- Tabe indicies can't start with a number
+  app = string.gsub(app, '^%d', 'N') -- Table indices can't start with a number
+
+  -- Check if this app has an alias
+  if appAliases[app] ~= nil then
+    log('App ' .. app .. ' aliased to ' .. appAliases[app])
+    app = appAliases[app]
+  end
+
   log('Getting combo ' .. strCombo .. ' with subkey ' .. app)
   local comboNode = combo[strCombo]
   if comboNode == nil then
@@ -137,6 +150,13 @@ end
 function getMenuPath(strMenuName)
   -- Look up combo from combo table
   local app = string.gsub(hs.application.frontmostApplication():name(), ' ', '_')
+
+  -- Check if this app has an alias
+  if appAliases[app] ~= nil then
+    log('App ' .. app .. ' aliased to ' .. appAliases[app])
+    app = appAliases[app]
+  end
+
   log('Getting menu path ' .. strMenuName .. ' for app ' .. app)
   local menuNode = menuPath[strMenuName]
   if menuNode == nil then return {} end
@@ -209,7 +229,7 @@ function selectMenuItem(tblMenuItem)
   else
 	  menu = app:findMenuItem(tblMenuItem)
 	  if menu ~= nil then
-      log('Sending menu item:  ' .. hs.inspect(tblMenuItem) .. ' to app ' .. app:name(app))
+      log('Sending menu item:  ' .. hs.inspect(tblMenuItem) .. ' to app ' .. app:name())
 	    app:selectMenuItem(tblMenuItem)
       return true -- Don't prop the current event
 	  end

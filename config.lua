@@ -52,6 +52,16 @@ keyEvents = {
   ctrlS          = function()  return sendKeyOrMenu('save') end,
   ctrlY          = function()  return sendKeyOrMenu('redo') end,
   ctrlZ          = function()  return sendKey(getCombo('undo')) end,
+  ctrlL          = function()  return sendKey(getCombo('locationBar')) end,
+  ctrlH          = function()  return sendKey(getCombo('history')) end,
+  ctrlJ          = function()  return sendKey(getCombo('downloads')) end,
+  ctrlShiftR     = function()  return sendKey(getCombo('hardReload')) end,
+  ctrlT          = function()  return sendKey(getCombo('newTab')) end,
+  ctrlShiftT     = function()  return sendKey(getCombo('reopenTab')) end,
+  ctrlShiftP     = function()  return sendKey(getCombo('privateMode')) end,
+  ctrlG          = function()  return sendKey(getCombo('findagain')) end,
+  altLeft        = function()  return sendKey(getCombo('browserBack')) end,
+  altRight       = function()  return sendKey(getCombo('browserForward')) end,
   f2             = function()  return sendKeyOrMenu('rename') end,
   f3             = function()  return sendKeyOrMenu('findagain') end,
 
@@ -124,6 +134,8 @@ keyFuncs = {
     [120] = keyEvents.f2 -- F2 (edit cell/ Finder: rename)
   },
   altMods = {
+    [123] = keyEvents.altLeft,
+    [124] = keyEvents.altRight,
     [125] = keyEvents.ctrlEnd,
     [126] = keyEvents.ctrlHome
   },
@@ -131,6 +143,8 @@ keyFuncs = {
     [0] = keyEvents.ctrlA,
     [1] = keyEvents.ctrlS,
     [3] = keyEvents.ctrlF,
+    [4] = keyEvents.ctrlH,
+    [5] = keyEvents.ctrlG,
     [6] = keyEvents.ctrlZ,
     [7] = keyEvents.ctrlX,
     [8] = keyEvents.ctrlC,
@@ -139,15 +153,18 @@ keyFuncs = {
     [13] = keyEvents.ctrlW,
     [15] = keyEvents.ctrlR,
     [16] = keyEvents.ctrlY,
+    [17] = keyEvents.ctrlT,
     [31] = keyEvents.ctrlO,
     [32] = keyEvents.ctrlU,
     [34] = keyEvents.ctrlI,
+    [37] = keyEvents.ctrlL,
+    [38] = keyEvents.ctrlJ,
     [45] = keyEvents.ctrlN,
     [114] = keyEvents.ctrlC,
     [115] = keyEvents.ctrlHome,
-    [119] = keyEvents.ctrlEnd,
-    [123] = keyEvents.ctrlRight,
-    [124] = keyEvents.ctrlLeft
+    [119] = keyEvents.ctrlEnd
+    -- [123] = keyEvents.ctrlRight,  -- Commented out: conflicts with desktop switching
+    -- [124] = keyEvents.ctrlLeft    -- Commented out: conflicts with desktop switching
   },
   shiftMods = {
     [114] = keyEvents.ctrlV,
@@ -156,11 +173,14 @@ keyFuncs = {
     [119] = keyEvents.shiftEnd
   },
   ctrlShiftMods = {
+    [15] = keyEvents.ctrlShiftR,
+    [17] = keyEvents.ctrlShiftT,
+    [35] = keyEvents.ctrlShiftP,
     [114] = keyEvents.shiftCtrlInsert,
     [115] = keyEvents.ctrlShiftHome,
-    [119] = keyEvents.ctrlShiftEnd,
-    [123] = keyEvents.ctrlShiftRight,
-    [124] = keyEvents.ctrlShiftLeft
+    [119] = keyEvents.ctrlShiftEnd
+    -- [123] = keyEvents.ctrlShiftRight,  -- Commented out: conflicts with desktop switching
+    -- [124] = keyEvents.ctrlShiftLeft    -- Commented out: conflicts with desktop switching
   },
   cmdMods = {
     -- For future fun with Microsoft Remote Desktop and VirtualBox

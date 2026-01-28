@@ -43,13 +43,14 @@ combo = {
     default = {{'cmd'}, 'f'},
     Microsoft_Remote_Desktop = {}, -- Non Mac OS contexts need this so a menu item isn't attempted by sendKeyOrMenu()
     VirtualBox_VM = {},
-    Terminal  = {},
+    -- Terminal uses iTerm2 config via alias in functions.lua
     iTerm2 = {},
   },
   cut = { -- No default key here will signal a menu command instead. See sendKeyOrMenu()
     default = {{'cmd'}, 'x'},
     Microsoft_Remote_Desktop = {}, -- Non Mac OS contexts need this so a menu item isn't attempted by sendKeyOrMenu()
     VirtualBox_VM = {},
+    -- Terminal uses iTerm2 config via alias
     iTerm2 = {},
     FileZilla = {{'cmd'}, 'x'}  -- Doesn't work. Apps that don't have menu items are half baked.
   },
@@ -57,7 +58,7 @@ combo = {
     default = {{'cmd'}, 'c'},
     Microsoft_Remote_Desktop = {},
     VirtualBox_VM = {},
-    Terminal = {}, -- Pass through as ctrl+c (stop)
+    -- Terminal uses iTerm2 config via alias -- Pass through as ctrl+c (stop)
     iTerm2 = {},
     NPassword_6 = {{'cmd'}, 'c'},
     FileZilla = {{'cmd'}, 'c'} -- Doesn't work. Apps that don't have menu items are half baked.
@@ -66,7 +67,9 @@ combo = {
     default = {{'cmd'}, 'v'},
     Microsoft_Remote_Desktop = {},
     VirtualBox_VM = {},
-    FileZilla = {{'cmd'}, 'v'}  -- Doesn't work. Apps that don't have menu items are half baked.
+    FileZilla = {{'cmd'}, 'v'},  -- Doesn't work. Apps that don't have menu items are half baked.
+    -- Terminal uses iTerm2 config via alias
+    iTerm2 = {}
   },
   -- Next two are special cases where the triggering action is the holding of mofidiers only,
   -- which on a Mac does not generate a key event (have to use flagsChanged event to tap)
@@ -83,17 +86,23 @@ combo = {
   save = {
     default = {{'cmd'}, 's'},
     Microsoft_Remote_Desktop = {},
-    VirtualBox_VM = {}
+    VirtualBox_VM = {},
+    -- Terminal uses iTerm2 config via alias
+    iTerm2 = {}
   },
   undo = {
     default = {{'cmd'}, 'z'},
     Microsoft_Remote_Desktop = {},
-    VirtualBox_VM = {}
+    VirtualBox_VM = {},
+    -- Terminal uses iTerm2 config via alias
+    iTerm2 = {}
   },
   redo = {
     default = {{'cmd'}, 'y'}, -- Not always implemented by apps. Try removing to have a menu item attempted
     Microsoft_Remote_Desktop = {},
-    VirtualBox_VM = {{'ctrl'}, 'y'}
+    VirtualBox_VM = {{'ctrl'}, 'y'},
+    -- Terminal uses iTerm2 config via alias
+    iTerm2 = {}
   },
   -- On a mac, option+right jumps to end of current word (then ends of subsequent words).
   -- On a PC, control+right jumps to begin of next word (sigh)
@@ -121,14 +130,16 @@ combo = {
   },
   endLine = {
     default = {{'cmd'}, 'right'},
-    Terminal = {{'alt'}, 'right'},
+    -- Terminal uses iTerm2 config via alias
     iTerm2 = {{}, 'end'},
     VirtualBox_VM = {},
     Microsoft_Remote_Desktop = {},
-    -- SKip in browsers. cmd+arrows used to navigate pages
+    -- Browsers: passthrough - let browser handle Home/End natively
     Google_Chrome = {{'cmd'}, 'right'},
     Safari = {},
-    Opera = {}
+    Opera = {},
+    Firefox = {},
+    Microsoft_Edge = {{'cmd'}, 'right'}
   },
   selectEndLine = {
     default = {{'cmd', 'shift'}, 'right'},
@@ -137,14 +148,16 @@ combo = {
   },
   beginLine = {
     default = {{'cmd'}, 'left'},
-    Terminal = {{'alt'}, 'left'},
+    -- Terminal uses iTerm2 config via alias
     iTerm2 = {},
     Microsoft_Remote_Desktop = {},
     VirtualBox_VM = {},
-    -- SKip in browsers. cmd+arrows used to navigate pages
+    -- Browsers: passthrough - let browser handle Home/End natively
     Google_Chrome = {{'cmd'}, 'left'},
     Safari = {},
-    Opera = {}
+    Opera = {},
+    Firefox = {},
+    Microsoft_Edge = {{'cmd'}, 'left'}
   },
   selectBeginLine = {
     default = {{'cmd', 'shift'}, 'left'},
@@ -174,45 +187,151 @@ combo = {
   open = {
     default = {{'cmd'}, 'o'},
     Microsoft_Remote_Desktop = {},
-    VirtualBox_VM = {}
+    VirtualBox_VM = {},
+    -- Terminal uses iTerm2 config via alias
+    iTerm2 = {}
   },
   new = {
     default = {{'cmd'}, 'n'},
     Microsoft_Remote_Desktop = {},
-    VirtualBox_VM = {}
+    VirtualBox_VM = {},
+    -- Terminal uses iTerm2 config via alias
+    iTerm2 = {}
   },
   close = {
     default = {{'cmd'}, 'w'},
     Microsoft_Remote_Desktop = {},
-    VirtualBox_VM = {}
+    VirtualBox_VM = {},
+    -- Terminal uses iTerm2 config via alias
+    iTerm2 = {}
   },
   selectAll = {
     --default = {{'cmd'}, 'a'}, -- Deprecated. For an unknown reason, cmd+a would not send! Since no default here, sendKeyOrMenu() will look to send a menu command instead
-    Terminal = {'ctrl', 'a'},
+    -- Terminal uses iTerm2 config via alias
     Microsoft_Remote_Desktop = {},
-    VirtualBox_VM = {}
+    VirtualBox_VM = {},
+    iTerm2 = {}  -- Passthrough: let Ctrl+A work as go-to-beginning-of-line in terminal
   },
   bold = {
     default = {{'cmd'}, 'b'},
     Microsoft_Remote_Desktop = {},
     VirtualBox_VM = {},
-    Terminal  = {}, -- Back in vi
+    -- Terminal uses iTerm2 config via alias in functions.lua -- Back in vi
     iTerm2 = {},
   },
   italic = {
     default = {{'cmd'}, 'i'},
     Microsoft_Remote_Desktop = {},
     VirtualBox_VM = {},
-    Terminal  = {}, -- Insert in vi
+    -- Terminal uses iTerm2 config via alias
+    iTerm2 = {}
   },
   underline = {
     default = {{'cmd'}, 'u'},
     Microsoft_Remote_Desktop = {},
-    VirtualBox_VM = {}
+    VirtualBox_VM = {},
+    -- Terminal uses iTerm2 config via alias
+    iTerm2 = {}
   },
   reload = {
     default= {},
     Google_Chrome = {{'cmd'}, 'r'},
+    Safari = {{'cmd'}, 'r'},
+    Firefox = {{'cmd'}, 'r'},
+    Microsoft_Edge = {{'cmd'}, 'r'},
+    Opera = {{'cmd'}, 'r'},
+    -- Terminal uses iTerm2 config via alias
+    iTerm2 = {}
+  },
+  hardReload = {
+    default = {},
+    Google_Chrome = {{'cmd', 'shift'}, 'r'},
+    Safari = {{'cmd', 'shift'}, 'r'},
+    Firefox = {{'cmd', 'shift'}, 'r'},
+    Microsoft_Edge = {{'cmd', 'shift'}, 'r'},
+    Opera = {{'cmd', 'shift'}, 'r'},
+    -- Terminal uses iTerm2 config via alias
+    iTerm2 = {}
+  },
+  locationBar = {
+    default = {},
+    Google_Chrome = {{'cmd'}, 'l'},
+    Safari = {{'cmd'}, 'l'},
+    Firefox = {{'cmd'}, 'l'},
+    Microsoft_Edge = {{'cmd'}, 'l'},
+    Opera = {{'cmd'}, 'l'},
+    -- Terminal uses iTerm2 config via alias
+    iTerm2 = {}
+  },
+  history = {
+    default = {},
+    Google_Chrome = {{'cmd'}, 'y'},
+    Safari = {{'cmd'}, 'y'},
+    Firefox = {{'cmd'}, 'y'},
+    Microsoft_Edge = {{'cmd'}, 'y'},
+    Opera = {{'cmd'}, 'y'},
+    -- Terminal uses iTerm2 config via alias
+    iTerm2 = {}
+  },
+  downloads = {
+    default = {},
+    Google_Chrome = {{'cmd', 'shift'}, 'j'},
+    Safari = {{'cmd', 'alt'}, 'l'},
+    Firefox = {{'cmd'}, 'j'},
+    Microsoft_Edge = {{'cmd'}, 'j'},
+    Opera = {{'cmd'}, 'j'},
+    -- Terminal uses iTerm2 config via alias
+    iTerm2 = {}
+  },
+  newTab = {
+    default = {},
+    Google_Chrome = {{'cmd'}, 't'},
+    Safari = {{'cmd'}, 't'},
+    Firefox = {{'cmd'}, 't'},
+    Microsoft_Edge = {{'cmd'}, 't'},
+    Opera = {{'cmd'}, 't'},
+    -- Terminal uses iTerm2 config via alias
+    iTerm2 = {}
+  },
+  reopenTab = {
+    default = {},
+    Google_Chrome = {{'cmd', 'shift'}, 't'},
+    Safari = {{'cmd'}, 'z'},  -- Safari uses Cmd+Z to reopen closed tab
+    Firefox = {{'cmd', 'shift'}, 't'},
+    Microsoft_Edge = {{'cmd', 'shift'}, 't'},
+    Opera = {{'cmd', 'shift'}, 't'},
+    -- Terminal uses iTerm2 config via alias
+    iTerm2 = {}
+  },
+  privateMode = {
+    default = {},
+    Google_Chrome = {{'cmd', 'shift'}, 'n'},  -- Incognito
+    Safari = {{'cmd', 'shift'}, 'n'},  -- Private window
+    Firefox = {{'cmd', 'shift'}, 'p'},
+    Microsoft_Edge = {{'cmd', 'shift'}, 'n'},  -- InPrivate
+    Opera = {{'cmd', 'shift'}, 'n'},
+    -- Terminal uses iTerm2 config via alias
+    iTerm2 = {}
+  },
+  browserBack = {
+    default = {},
+    Google_Chrome = {{'cmd'}, 'left'},
+    Safari = {{'cmd'}, 'left'},
+    Firefox = {{'cmd'}, 'left'},
+    Microsoft_Edge = {{'cmd'}, 'left'},
+    Opera = {{'cmd'}, 'left'},
+    -- Terminal uses iTerm2 config via alias
+    iTerm2 = {}
+  },
+  browserForward = {
+    default = {},
+    Google_Chrome = {{'cmd'}, 'right'},
+    Safari = {{'cmd'}, 'right'},
+    Firefox = {{'cmd'}, 'right'},
+    Microsoft_Edge = {{'cmd'}, 'right'},
+    Opera = {{'cmd'}, 'right'},
+    -- Terminal uses iTerm2 config via alias
+    iTerm2 = {}
   },
   rename = {
     Google_Chrome = {{}, 'F2'}
@@ -220,7 +339,9 @@ combo = {
   findagain = {
     default = {{'cmd'}, 'g'},
     Microsoft_Remote_Desktop = {},
-    VirtualBox_VM = {}
+    VirtualBox_VM = {},
+    -- Terminal uses iTerm2 config via alias
+    iTerm2 = {}
   }
 }
 
