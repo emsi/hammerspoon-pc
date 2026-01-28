@@ -42,6 +42,7 @@ This configuration remaps PC-style keyboard shortcuts to work on macOS.
 |----------|--------------------|
 | `Ctrl+Home` / `Ctrl+End` | Pass through in Microsoft Remote Desktop; `Ctrl+Home` / `Ctrl+End` in VirtualBox VM |
 | `Ctrl+Shift+Home` / `Ctrl+Shift+End` | Pass through in Microsoft Remote Desktop and VirtualBox VM |
+| `Ctrl+Insert` / `Shift+Insert` / `Shift+Delete` | Send `Ctrl+C` / `Ctrl+V` / `Ctrl+X` in Microsoft Remote Desktop and VirtualBox VM |
 
 ## Edit Operations
 
@@ -89,9 +90,9 @@ This configuration remaps PC-style keyboard shortcuts to work on macOS.
 
 | PC Shortcut | Action | Notes |
 |-------------|--------|-------|
-| `Ctrl+Fn` | Copy | Emulates PC's `Ctrl+Insert` |
-| `Shift+Fn` | Paste | Emulates PC's `Shift+Insert` |
-| `Shift+Forward Delete` | Cut | Emulates PC's `Shift+Delete` |
+| `Ctrl+Insert` | Copy | On Mac keyboards, use `Ctrl+Fn` |
+| `Shift+Insert` | Paste | On Mac keyboards, use `Shift+Fn` |
+| `Shift+Delete` | Cut | On Mac keyboards, use `Shift+Forward Delete` |
 
 ## Function Keys
 
@@ -123,11 +124,12 @@ Full passthrough mode - all PC shortcuts are sent directly to the remote Windows
 | `Ctrl+Shift+Left/Right` | Passthrough |
 | `F2/F3` | Passthrough |
 
-**Special Fn combinations:**
+**Special Insert combinations (mac keyboards):**
 | Shortcut | Sends |
 |----------|-------|
-| `Ctrl+Fn` | `Cmd+C` (Copy) *(Ctrl+C in Remote Desktop / VirtualBox)* |
-| `Shift+Insert` | `Cmd+V` (Paste) *(Ctrl+V in Remote Desktop / VirtualBox)* |
+| `Ctrl+Insert` *(Ctrl+Fn)* | `Ctrl+C` (Copy) |
+| `Shift+Insert` *(Shift+Fn)* | `Ctrl+V` (Paste) |
+| `Shift+Delete` *(Shift+Forward Delete)* | `Ctrl+X` (Cut) |
 
 ### VirtualBox VM
 
@@ -154,11 +156,12 @@ Full passthrough mode for most shortcuts, with some specific translations for do
 | `Ctrl+Left` | `Ctrl+Left` | Previous word |
 | `Ctrl+Right` | `Ctrl+Right` | Next word |
 
-**Special Fn combinations:**
+**Special Insert combinations (mac keyboards):**
 | Shortcut | Sends |
 |----------|-------|
-| `Ctrl+Fn` | `Ctrl+C` (Copy) |
-| `Shift+Fn` | `Ctrl+V` (Paste) |
+| `Ctrl+Insert` *(Ctrl+Fn)* | `Ctrl+C` (Copy) |
+| `Shift+Insert` *(Shift+Fn)* | `Ctrl+V` (Paste) |
+| `Shift+Delete` *(Shift+Forward Delete)* | `Ctrl+X` (Cut) |
 
 ### Terminal / iTerm2
 
@@ -318,7 +321,7 @@ All following Ctrl+key combinations pass through unchanged to allow standard rea
 
 ## Known Issues
 
-- `Ctrl+Fn` & `Shift+Fn` don't work reliably in Microsoft Remote Desktop
+- `Ctrl+Insert` / `Shift+Insert` (Ctrl+Fn / Shift+Fn on Mac keyboards) don't work reliably in Microsoft Remote Desktop
 - No cut/copy/paste functions in MinTTY (bash emulator) on Windows VM
 - Event taps occasionally drop without reload (ongoing issue)
 - FileZilla keyboard shortcuts may not work due to app limitations

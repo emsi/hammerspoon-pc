@@ -48,6 +48,7 @@ keyEvents = {
   ctrlW          = function()  return sendKey(getCombo('close')) end,
   ctrlR          = function()  return sendKey(getCombo('reload')) end,
   ctrlV          = function()  return sendKeyOrMenu('paste') end,
+  ctrlInsertCopy = function()  return sendKey(getCombo('copyInsert')) end,
   ctrlN          = function()  return sendKeyOrMenu('new') end,
   ctrlS          = function()  return sendKeyOrMenu('save') end,
   ctrlY          = function()  return sendKeyOrMenu('redo') end,
@@ -99,9 +100,11 @@ keyEvents = {
                     return ret
   end,
 
+  shiftInsertPaste = function() return sendKey(getCombo('pasteInsert')) end,
+
   shiftFwdDelete = function()
                       --hs.alert(hs.application.frontmostApplication():name())
-                      ret = sendKey(getCombo('cut'))
+                      ret = sendKey(getCombo('cutShiftDelete'))
                       hs.timer.delayed.new(.51, function()
                         if DEBUG and not hs.pasteboard.getContents() == nil then
                           log('Special cut. pasteboard=' .. hs.pasteboard.getContents())
@@ -160,14 +163,14 @@ keyFuncs = {
     [37] = keyEvents.ctrlL,
     [38] = keyEvents.ctrlJ,
     [45] = keyEvents.ctrlN,
-    [114] = keyEvents.ctrlC,
+    [114] = keyEvents.ctrlInsertCopy,
     [115] = keyEvents.ctrlHome,
     [119] = keyEvents.ctrlEnd
     -- [123] = keyEvents.ctrlRight,  -- Commented out: conflicts with desktop switching
     -- [124] = keyEvents.ctrlLeft    -- Commented out: conflicts with desktop switching
   },
   shiftMods = {
-    [114] = keyEvents.ctrlV,
+    [114] = keyEvents.shiftInsertPaste,
     [115] = keyEvents.shiftHome,
     [117] = keyEvents.shiftFwdDelete,
     [119] = keyEvents.shiftEnd

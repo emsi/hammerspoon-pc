@@ -54,6 +54,11 @@ combo = {
     iTerm2 = {},
     FileZilla = {{'cmd'}, 'x'}  -- Doesn't work. Apps that don't have menu items are half baked.
   },
+  cutShiftDelete = {
+    default = {{'cmd'}, 'x'},
+    Microsoft_Remote_Desktop = {{'ctrl'}, 'x'},
+    VirtualBox_VM = {{'ctrl'}, 'x'}
+  },
   copy = {
     default = {{'cmd'}, 'c'},
     Microsoft_Remote_Desktop = {},
@@ -63,6 +68,11 @@ combo = {
     NPassword_6 = {{'cmd'}, 'c'},
     FileZilla = {{'cmd'}, 'c'} -- Doesn't work. Apps that don't have menu items are half baked.
   },
+  copyInsert = {
+    default = {{'cmd'}, 'c'},
+    Microsoft_Remote_Desktop = {{'ctrl'}, 'c'},
+    VirtualBox_VM = {{'ctrl'}, 'c'}
+  },
   paste = {
     default = {{'cmd'}, 'v'},
     Microsoft_Remote_Desktop = {},
@@ -70,6 +80,11 @@ combo = {
     FileZilla = {{'cmd'}, 'v'},  -- Doesn't work. Apps that don't have menu items are half baked.
     -- Terminal uses iTerm2 config via alias
     iTerm2 = {}
+  },
+  pasteInsert = {
+    default = {{'cmd'}, 'v'},
+    Microsoft_Remote_Desktop = {{'ctrl'}, 'v'},
+    VirtualBox_VM = {{'ctrl'}, 'v'}
   },
   -- Next two are special cases where the triggering action is the holding of mofidiers only,
   -- which on a Mac does not generate a key event (have to use flagsChanged event to tap)
